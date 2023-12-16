@@ -1,4 +1,4 @@
-name: Build and publish
+name: Compile Minecraft Mod
 
 on:
   push:
@@ -14,7 +14,11 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Build and publish .jar
-      uses: Kir-Antipov/mc-publish@v3.3
+    - name: Build mod
+      uses: RuochenFu21/compilation@v1
+
+    - name: Archive Artifacts
+      uses: actions/upload-artifact@v2
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        name: Artifacts
+        path: ./build/libs
